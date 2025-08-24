@@ -8,51 +8,46 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0067BF',
-          light: '#0A65CC',
-          lighter: '#CEE0F5',
-          bg: '#F2F9FF',
+          DEFAULT: '#0A66C2',
+          hover: '#084d92',
+          disabled: '#CEE0F5',
         },
         text: {
-          primary: '#18191C',
-          secondary: '#5E6670',
-          tertiary: '#767F8C',
-          muted: '#474C54',
+          DEFAULT: '#1F2937',
+          secondary: '#6B7280',
+          light: '#FFFFFF',
         },
         border: {
-          DEFAULT: '#E4E5E8',
-          checkbox: '#9DC1EB',
+          DEFAULT: '#E5E7EB',
         },
         social: {
-          linkedin: '#0073B6',
+          linkedin: '#0A66C2',
           google: {
-            yellow: '#FBBB00',
-            blue: '#518EF8',
-            green: '#28B446',
-            red: '#F14336',
+            yellow: '#FBBC05',
+            blue: '#4285F4',
+            green: '#34A853',
+            red: '#EA4335',
           },
+        },
+        overlay: {
+          dark: 'rgba(0, 0, 0, 0.6)',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        '35': ['35px', { lineHeight: '1.2' }],
-        '32': ['32px', { lineHeight: '1.25' }],
-        '17': ['17.5px', { lineHeight: '1.6' }],
-        '16': ['16px', { lineHeight: '1.5' }],
-        '14': ['14px', { lineHeight: '1.43' }],
-        '12': ['12.3px', { lineHeight: '1.43' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+        'base': ['1rem', { lineHeight: '1.5rem' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
       },
-      spacing: {
-        '465': '465px',
-        '312': '312px',
-        '208': '208px',
-        '54': '54px',
+      boxShadow: {
+        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
       },
-      borderRadius: {
-        '5': '5px',
-        '7': '7px',
+      backgroundImage: {
+        'gradient-overlay': 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%)',
       },
     },
   },

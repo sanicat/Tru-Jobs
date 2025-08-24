@@ -1,209 +1,236 @@
-import React, { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Eye, EyeOff } from 'lucide-react';
-import BackgroundImage from '@/components/BackgroundImage';
+import { ArrowLeft, Eye, EyeOff, Briefcase, Building } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SocialButton } from '@/components/ui/social-button';
+import logoUrl from '@/assets/tru-jobs-logo.svg';
+import loginBg from '@/assets/login-bg.png';
+import bgGradient from '@/assets/bg-gradient.svg';
+import bgStrip from '@/assets/bg-strip.svg';
 
-const LoginPage: React.FC = () => {
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    rememberMe: false
+  });
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Form submitted:', formData);
+  };
+
+  const isFormValid = formData.email && formData.password;
 
   return (
-    <div className="flex min-h-screen w-full bg-white">
-      {/* Left Side - Background Image and Content */}
-      <div className="relative w-[736px]">
+    <div className="flex min-h-screen bg-white">
+      {/* Left Section - Background Image with Marketing Content */}
+      <div className="relative hidden md:flex w-[45%]">
+        {/* Background Strip */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            backgroundImage: `url(${bgStrip})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        />
+        
         {/* Background Image */}
-        <BackgroundImage />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(${loginBg})`
+          }}
+        />
         
-        {/* Blue overlay on the right */}
-        <div className="absolute right-0 top-0 w-[197.5px] h-full bg-primary"></div>
+        {/* SVG Gradient overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{ 
+            backgroundImage: `url(${bgGradient})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        />
         
-        {/* Content */}
-        <div className="relative z-10 flex h-full flex-col justify-end pb-20 pl-[110px]">
-          {/* Main heading */}
-          <h1 className="mb-11 w-[490px] text-35 font-bold leading-[1.2] text-white">
+        {/* Marketing Content */}
+        <div className="absolute bottom-32 left-12 text-white z-10 max-w-xl">
+          <h2 className="text-2xl lg:text-4xl font-bold mb-12 leading-tight">
             Over 1,75,324 candidates waiting for good employees.
-          </h1>
+          </h2>
           
-          {/* Stats */}
-          <div className="flex w-[490px] gap-5">
-            {/* Live Jobs */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-2 rounded-[7px] bg-white/10 px-[14px] py-[14px]">
-                <div className="flex h-7 w-7 items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M3.5 7.88H24.52V23.65H3.5V7.88Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M9.63 4.38H18.39V7.88H9.63V4.38Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M3.5 13.83H24.52V16.64H3.5V13.83Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M12.7 13.14H15.33" stroke="white" strokeWidth="1.31"/>
-                  </svg>
+          {/* Statistics Grid */}
+          <div className="grid grid-cols-3 gap-8">
+            {[
+              { 
+                number: '1,75,324', 
+                label: 'Live Jobs',
+                icon: <Briefcase className="w-6 h-6" />
+              },
+              { 
+                number: '97,354', 
+                label: 'Companies',
+                icon: <Building className="w-6 h-6" />
+              },
+              { 
+                number: '7,532', 
+                label: 'New Jobs',
+                icon: <Briefcase className="w-6 h-6" />
+              }
+            ].map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-white/10 w-14 h-14 rounded-lg mb-4 mx-auto flex items-center justify-center backdrop-blur-sm">
+                  {stat.icon}
                 </div>
+                <p className="text-lg font-semibold text-white">{stat.number}</p>
+                <p className="text-sm text-white/70">{stat.label}</p>
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-17 font-semibold text-white">1,75,324</span>
-                <span className="text-12 text-white/70">Live Job</span>
-              </div>
-            </div>
-            
-            {/* Companies */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-2 rounded-[7px] bg-white/10 px-[14px] py-[14px]">
-                <div className="flex h-7 w-7 items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M1.75 23.65H26.27" stroke="white" strokeWidth="1.31"/>
-                    <path d="M15.76 10.51H24.52V23.65H15.76V10.51Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M7.01 7.88H10.51" stroke="white" strokeWidth="1.31"/>
-                    <path d="M8.76 14.89H12.26" stroke="white" strokeWidth="1.31"/>
-                    <path d="M7.01 19.27H10.51" stroke="white" strokeWidth="1.31"/>
-                    <path d="M19.27 19.27H21.02" stroke="white" strokeWidth="1.31"/>
-                    <path d="M19.27 14.89H21.02" stroke="white" strokeWidth="1.31"/>
-                  </svg>
-                </div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-17 font-semibold text-white">97,354</span>
-                <span className="text-12 text-white/70">Companies</span>
-              </div>
-            </div>
-            
-            {/* New Jobs */}
-            <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-2 rounded-[7px] bg-white/10 px-[14px] py-[14px]">
-                <div className="flex h-7 w-7 items-center justify-center">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M3.5 7.88H24.52V23.65H3.5V7.88Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M9.63 4.38H18.39V7.88H9.63V4.38Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M3.5 13.83H24.52V16.64H3.5V13.83Z" stroke="white" strokeWidth="1.31" fill="none"/>
-                    <path d="M12.7 13.14H15.33" stroke="white" strokeWidth="1.31"/>
-                  </svg>
-                </div>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-17 font-semibold text-white">7,532</span>
-                <span className="text-12 text-white/70">New Jobs</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-      
-      {/* Right Side - Login Form */}
-      <div className="relative flex flex-1 flex-col items-center justify-center px-20">
-        {/* Logo */}
-        <div className="absolute left-0 top-[100px] flex items-center gap-3">
-          <div className="flex h-[30.55px] w-[30.55px] items-center justify-center rounded-full bg-white">
-            <div className="h-6 w-6 rounded-full bg-black"></div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-2xl font-bold text-primary">Tru</span>
-            <span className="text-2xl font-bold text-primary">Jobs</span>
-            <span className="text-sm text-primary">-</span>
-          </div>
-        </div>
-        
-        {/* Login Form */}
-        <div className="flex w-[465px] flex-col gap-8">
-          {/* Header */}
-          <div className="flex flex-col gap-4">
-            <h2 className="text-32 font-medium text-text-primary">Sign in</h2>
-            <div className="flex items-center gap-1">
-              <span className="text-16 text-text-secondary">Don't have an account ?</span>
-              <button className="text-16 font-medium text-primary-light">Sign up</button>
+
+      {/* Right Section - Login Form */}
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+        {/* Back Button */}
+        <div className="mb-8">
+          <button className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-2">
+              <ArrowLeft className="w-4 h-4" />
             </div>
+            Back
+          </button>
+        </div>
+
+        {/* Login Form Container */}
+        <div className="flex-1 max-w-md mx-auto w-full flex flex-col justify-center -mt-12">
+          {/* Logo and Header */}
+          <div className="mb-12">
+            <img 
+              src={logoUrl} 
+              alt="Tru-Jobs" 
+              className="h-8 mb-12"
+            />
+            <h1 className="text-2xl font-bold text-gray-900 mb-2">Sign in</h1>
+            <p className="text-gray-600">
+              Don't have an account?{' '}
+              <button
+                type="button"
+                onClick={() => navigate('/signup/role')}
+                className="text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Sign up
+              </button>
+            </p>
           </div>
-          
-          {/* Form */}
-          <div className="flex flex-col gap-5">
-            <Input 
-              placeholder="Email address"
-              className="w-[465px]"
-            />
-            
-            <Input 
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="w-[465px]"
-              icon={
-                <button 
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="text-text-primary"
-                >
-                  {showPassword ? <EyeOff size={22} /> : <Eye size={22} />}
-                </button>
-              }
-            />
-            
-            <div className="flex w-[465px] items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Checkbox 
-                  id="remember" 
-                  checked={rememberMe}
-                  onCheckedChange={(checked) => setRememberMe(checked as boolean)}
-                />
-                <label htmlFor="remember" className="text-14 text-text-tertiary">
-                  Remember Me
-                </label>
-              </div>
-              <button className="text-14 font-medium text-primary-light">
-                Forget password
+
+          {/* Login Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email Input */}
+            <div>
+              <input
+                type="email"
+                placeholder="Email address"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              />
+            </div>
+
+            {/* Password Input with Toggle */}
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
             </div>
-          </div>
-          
-          {/* Sign in button */}
-          <Button 
-            variant="disabled" 
-            size="large"
-            disabled
-          >
-            Sign in
-          </Button>
-          
-          {/* Social login */}
-          <div className="flex w-[464px] flex-col items-center gap-4">
-            <span className="text-14 text-text-tertiary">or</span>
-            <div className="flex gap-5">
-              {/* LinkedIn */}
-              <Button variant="outline" size="default" className="w-[222px]">
-                <div className="flex items-center gap-3">
-                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none">
-                    <path d="M0.92 0.92H18.07V18.07H0.92V0.92Z" fill="#0073B6"/>
-                  </svg>
-                  <span className="text-14 text-text-muted">Sign in with Linkedin</span>
-                </div>
-              </Button>
-              
-              {/* Google */}
-              <Button variant="outline" size="default" className="w-[222px]">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-5 w-5">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M0 5.4L4.43 14.74" fill="#FBBB00"/>
-                      <path d="M10.22 8.13L20 8.13L15.57 17.47L10.22 8.13Z" fill="#518EF8"/>
-                      <path d="M1.19 12.09L15.26 12.09L10.83 20L1.19 12.09Z" fill="#28B446"/>
-                      <path d="M1.12 0L15.38 0L10.95 8.07L1.12 0Z" fill="#F14336"/>
-                    </svg>
-                  </div>
-                  <span className="text-14 text-text-muted">Sign in with Google</span>
-                </div>
-              </Button>
+
+            {/* Remember Me and Forgot Password */}
+            <div className="flex items-center justify-between">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  checked={formData.rememberMe}
+                  onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
+                />
+                <span className="text-sm text-gray-600">Remember Me</span>
+              </label>
+
+              <button 
+                type="button"
+                onClick={() => navigate('/forgot-password')}
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Forgot password?
+              </button>
             </div>
-          </div>
-        </div>
-        
-        {/* Floating notification */}
-        <div className="absolute right-20 top-[88px] flex h-[54px] w-[54px] items-center justify-center rounded-full bg-primary-bg">
-          <div className="flex h-6 w-6 items-center justify-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M0 5.24L24 5.24L24 18.74L0 18.74L0 5.24Z" fill="black"/>
-            </svg>
-          </div>
+
+            {/* Sign In Button */}
+            <button
+              type="submit"
+              disabled={!isFormValid}
+              className={`w-full py-3 px-4 rounded-lg font-medium text-white transition-colors
+                ${isFormValid 
+                  ? 'bg-blue-600 hover:bg-blue-700' 
+                  : 'bg-gray-300 cursor-not-allowed'}`}
+            >
+              Sign in
+            </button>
+
+            {/* Divider */}
+            <div className="relative my-8">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-4 text-gray-500 bg-white">or</span>
+              </div>
+            </div>
+
+            {/* Social Login Buttons */}
+            <div className="space-y-4">
+              <SocialButton
+                icon={
+                  <svg viewBox="0 0 24 24" className="w-5 h-5">
+                    <path fill="#0077B5" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                  </svg>
+                }
+                provider="linkedin"
+              >
+                Sign in with LinkedIn
+              </SocialButton>
+
+              <SocialButton
+                icon={
+                  <svg viewBox="0 0 24 24" className="w-5 h-5">
+                    <path fill="#EA4335" d="M5.266 9.765A7.077 7.077 0 0 1 12 4.909c1.69 0 3.218.6 4.418 1.582L19.91 3C17.782 1.145 15.055 0 12 0 7.27 0 3.198 2.698 1.24 6.65l4.026 3.115Z" />
+                    <path fill="#34A853" d="M16.04 18.013c-1.09.703-2.474 1.078-4.04 1.078a7.077 7.077 0 0 1-6.723-4.823l-4.04 3.067A11.965 11.965 0 0 0 12 24c2.933 0 5.735-1.043 7.834-3l-3.793-2.987Z" />
+                    <path fill="#4A90E2" d="M19.834 21c2.195-2.048 3.62-5.096 3.62-9 0-.71-.109-1.473-.272-2.182H12v4.637h6.436c-.317 1.559-1.17 2.766-2.395 3.558L19.834 21Z" />
+                    <path fill="#FBBC05" d="M5.277 14.268A7.12 7.12 0 0 1 4.909 12c0-.782.125-1.533.357-2.235L1.24 6.65A11.934 11.934 0 0 0 0 12c0 1.92.445 3.73 1.237 5.335l4.04-3.067Z" />
+                  </svg>
+                }
+                provider="google"
+              >
+                Sign in with Google
+              </SocialButton>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
-};
-
-export default LoginPage;
-
+}
