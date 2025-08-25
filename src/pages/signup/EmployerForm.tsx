@@ -56,7 +56,7 @@ const EmployerForm = () => {
       </div>
 
       {/* Left Section - Background Image with Marketing Content */}
-      <div className="relative hidden md:flex w-[45%]">
+      <div className="relative hidden md:flex w-[40%]">
         {/* Background Strip */}
         <div className="absolute inset-0" style={{ backgroundImage: `url(${bgStrip})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         {/* Background Image */}
@@ -64,7 +64,7 @@ const EmployerForm = () => {
         {/* SVG Gradient overlay */}
         <div className="absolute inset-0" style={{ backgroundImage: `url(${bgGradient})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         {/* Marketing Content */}
-        <div className="absolute bottom-12 left-10 text-white z-10 max-w-xl pr-8">
+        <div className="absolute bottom-12 left-10 text-white z-10 max-w-xl pr-8 mr-[15%]">
           <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight">Build Your Dream Team</h2>
           <p className="text-white/90 text-base lg:text-lg max-w-lg">
             Hire smarter by discovering verified professionals, managing postings, and tracking performance easily.
@@ -73,7 +73,7 @@ const EmployerForm = () => {
       </div>
 
       {/* Right Section - Form */}
-      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-16 flex flex-col bg-white">
         {/* Logo */}
         <div className="mb-[75px]">
           <img src={logoUrl} alt="Tru-Jobs" className="h-8" />
@@ -152,7 +152,7 @@ const EmployerForm = () => {
                 <ChevronDown className="w-4 h-4 text-gray-500" />
               </button>
               {recruiterOpen && (
-                <div className="absolute z-20 mt-1 w-full bg-white border rounded-md shadow-sm">
+                <div className="absolute z-20 mt-1 w-full bg-white border rounded-md shadow-xs">
                   {['Corporate Recruiter', 'Agency Recruiter', 'Hiring Manager'].map((opt) => (
                     <button
                       key={opt}
@@ -181,7 +181,7 @@ const EmployerForm = () => {
                 <ChevronDown className="w-4 h-4 text-gray-500" />
               </button>
               {positionOpen && (
-                <div className="absolute z-20 mt-1 w-full bg-white border rounded-md shadow-sm">
+                <div className="absolute z-20 mt-1 w-full bg-white border rounded-md shadow-xs">
                   {['HR', 'Talent Acquisition', 'Operations', 'Founder'].map((opt) => (
                     <button
                       key={opt}

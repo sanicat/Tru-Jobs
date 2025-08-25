@@ -27,7 +27,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left Section - Background Image with Marketing Content */}
-      <div className="relative hidden md:flex w-[45%]">
+      <div className="relative hidden md:flex w-[40%]">
         {/* Background Strip */}
         <div 
           className="absolute inset-0"
@@ -57,7 +57,7 @@ export default function LoginPage() {
         />
         
         {/* Marketing Content */}
-        <div className="absolute bottom-32 left-12 text-white z-10 max-w-xl">
+        <div className="absolute bottom-32 left-12 text-white z-10 max-w-xl mr-[15%]">
           <h2 className="text-2xl lg:text-4xl font-bold mb-12 leading-tight">
             Over 1,75,324 candidates waiting for good employees.
           </h2>
@@ -82,7 +82,7 @@ export default function LoginPage() {
               }
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="bg-white/10 w-14 h-14 rounded-lg mb-4 mx-auto flex items-center justify-center backdrop-blur-sm">
+                <div className="bg-white/10 w-14 h-14 rounded-lg mb-4 mx-auto flex items-center justify-center backdrop-blur-xs">
                   {stat.icon}
                 </div>
                 <p className="text-lg font-semibold text-white">{stat.number}</p>
@@ -94,7 +94,7 @@ export default function LoginPage() {
       </div>
 
       {/* Right Section - Login Form */}
-      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-16 flex flex-col bg-white">
         {/* Back Button */}
         <div className="mb-8">
           <button className="flex items-center text-gray-600 hover:text-gray-800 transition-colors">
@@ -136,7 +136,7 @@ export default function LoginPage() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all"
               />
             </div>
 
@@ -147,7 +147,7 @@ export default function LoginPage() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all"
               />
               <button
                 type="button"
@@ -163,7 +163,7 @@ export default function LoginPage() {
               <label className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="w-4 h-4 rounded-sm border-gray-300 text-blue-600 focus:ring-blue-500"
                   checked={formData.rememberMe}
                   onChange={(e) => setFormData({ ...formData, rememberMe: e.target.checked })}
                 />
@@ -202,7 +202,7 @@ export default function LoginPage() {
             </div>
 
             {/* Social Login Buttons */}
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <SocialButton
                 icon={
                   <svg viewBox="0 0 24 24" className="w-5 h-5">

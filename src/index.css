@@ -1,8 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')
+layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #0a66c2;
+  --color-primary-hover: #084d92;
+  --color-primary-disabled: #cee0f5;
+
+  --color-text: #1f2937;
+  --color-text-secondary: #6b7280;
+  --color-text-light: #ffffff;
+
+  --color-border: #e5e7eb;
+
+  --color-social-linkedin: #0a66c2;
+
+  --color-social-google-yellow: #fbbc05;
+  --color-social-google-blue: #4285f4;
+  --color-social-google-green: #34a853;
+  --color-social-google-red: #ea4335;
+
+  --color-overlay-dark: rgba(0, 0, 0, 0.6);
+
+  --font-sans: Inter, system-ui, sans-serif;
+
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  /* Reduce 4xl from ~36px to 26px globally */
+  --text-4xl: 1.625rem; /* 26px */
+  --text-4xl--line-height: 2rem; /* ~32px */
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+
+  --shadow-card:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  --background-image-gradient-overlay: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   :root {
@@ -12,5 +75,16 @@
 
   body {
     @apply font-sans antialiased;
+  }
+
+  /* Ensure CTA elements display a hand cursor */
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  /* Disabled buttons show not-allowed cursor */
+  button:disabled {
+    cursor: not-allowed;
   }
 }

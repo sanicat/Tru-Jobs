@@ -109,7 +109,7 @@ export default function LoginPage() {
         />
         
         {/* Fallback gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-primary/60" />
+        <div className="absolute inset-0 bg-linear-to-br from-primary/80 to-primary/60" />
         
         {/* Content */}
         <div className="absolute bottom-32 left-12 text-text-light z-10 max-w-xl">

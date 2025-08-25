@@ -110,7 +110,7 @@ export default function EnterOtp() {
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left Section - Background Image with Marketing Content */}
-      <div className="relative hidden md:flex w-[45%]">
+      <div className="relative hidden md:flex w-[40%]">
         {/* Background Strip */}
         <div
           className="absolute inset-0"
@@ -138,7 +138,7 @@ export default function EnterOtp() {
         />
 
         {/* Marketing Content (optional brief message to match visual balance) */}
-        <div className="absolute bottom-32 left-12 text-white z-10 max-w-xl">
+        <div className="absolute bottom-32 left-12 text-white z-10 max-w-xl mr-[15%]">
           <h2 className="text-2xl lg:text-4xl font-bold mb-12 leading-tight">
             Over 1,75,324 candidates waiting for good employees.
           </h2>
@@ -146,7 +146,7 @@ export default function EnterOtp() {
       </div>
 
       {/* Right Section - OTP Form */}
-      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-16 flex flex-col bg-white">
         {/* Logo */}
         <div className="mb-[75px]">
           <img src={logoUrl} alt="Tru-Jobs" className="h-8" />
@@ -182,7 +182,7 @@ export default function EnterOtp() {
                   onKeyDown={(e) => handleKeyDown(idx, e)}
                   onPaste={handlePaste}
                   aria-label={`OTP digit ${idx + 1}`}
-                  className="w-12 h-12 text-center text-lg border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:border-gray-400"
+                  className="w-12 h-12 text-center text-lg border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all hover:border-gray-400"
                 />
               ))}
             </div>

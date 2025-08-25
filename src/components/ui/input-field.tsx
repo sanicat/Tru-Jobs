@@ -25,7 +25,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
             type={inputType}
             className={cn(
               'w-full px-4 py-2.5 rounded-md border border-border',
-              'focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary',
+              'focus:outline-hidden focus:ring-2 focus:ring-primary/20 focus:border-primary',
               'placeholder:text-text-secondary',
               error && 'border-red-500 focus:ring-red-500/20 focus:border-red-500',
               className

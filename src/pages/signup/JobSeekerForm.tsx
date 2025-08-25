@@ -58,7 +58,7 @@ const JobSeekerForm = () => {
       </div>
 
       {/* Left Section - Background Image with Marketing Content */}
-      <div className="relative hidden md:flex w-[45%]">
+      <div className="relative hidden md:flex w-[40%]">
         {/* Background Strip */}
         <div
           className="absolute inset-0"
@@ -86,7 +86,7 @@ const JobSeekerForm = () => {
         />
 
         {/* Marketing Content */}
-        <div className="absolute bottom-12 left-10 text-white z-10 max-w-xl pr-8">
+        <div className="absolute bottom-12 left-10 text-white z-10 max-w-xl pr-8 mr-[15%]">
           <h2 className="text-2xl lg:text-4xl font-bold mb-4 leading-tight">
             Create Your Candidate Profile
           </h2>
@@ -97,7 +97,7 @@ const JobSeekerForm = () => {
       </div>
 
       {/* Right Section - Form */}
-      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-16 flex flex-col bg-white">
         {/* Logo */}
         <div className="mb-[75px]">
           <img src={logoUrl} alt="Tru-Jobs" className="h-8" />

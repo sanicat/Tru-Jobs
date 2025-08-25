@@ -27,7 +27,7 @@ export default function ResetPassword() {
   return (
     <div className="flex min-h-screen bg-white">
       {/* Left Section - Background Image with Marketing Content */}
-      <div className="relative hidden md:flex w-[45%]">
+      <div className="relative hidden md:flex w-[40%]">
         <div
           className="absolute inset-0"
           style={{ backgroundImage: `url(${bgStrip})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
@@ -40,7 +40,7 @@ export default function ResetPassword() {
       </div>
 
       {/* Right Section - Reset Form */}
-      <div className="flex-1 px-6 py-8 md:px-12 lg:px-24 flex flex-col bg-white">
+      <div className="flex-1 px-6 py-8 md:px-12 lg:px-16 flex flex-col bg-white">
         {/* Logo */}
         <div className="mb-[75px]">
           <img src={logoUrl} alt="Tru-Jobs" className="h-8" />
@@ -64,7 +64,7 @@ export default function ResetPassword() {
                 onChange={(e) => setPassword(e.target.value)}
                 aria-invalid={tooShort}
                 aria-describedby={tooShort ? 'password-error' : undefined}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all ${
                   tooShort ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -92,7 +92,7 @@ export default function ResetPassword() {
                 onChange={(e) => setConfirm(e.target.value)}
                 aria-invalid={mismatch}
                 aria-describedby={mismatch ? 'confirm-error' : undefined}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-hidden transition-all ${
                   mismatch ? 'border-red-500' : 'border-gray-300'
                 }`}
               />

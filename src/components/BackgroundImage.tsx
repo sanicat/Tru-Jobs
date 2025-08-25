@@ -4,7 +4,7 @@ const BackgroundImage: React.FC = () => {
   return (
     <div className="absolute inset-0">
       {/* Base gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-blue-900 to-blue-800"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-slate-800 via-blue-900 to-blue-800"></div>
       
       {/* Pattern overlay */}
       <div className="absolute inset-0 opacity-10">
