@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap')
-layer(base);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap') layer(base);
 
 @import 'tailwindcss';
 
@@ -87,4 +86,24 @@ layer(base);
   button:disabled {
     cursor: not-allowed;
   }
+}
+
+/* Light, rounded horizontal scrollbar for carousels */
+.scrollbar-light {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #cbd5e1 #f1f5f9; /* thumb track */
+}
+.scrollbar-light::-webkit-scrollbar {
+  height: 8px; /* horizontal */
+}
+.scrollbar-light::-webkit-scrollbar-track {
+  background: #f1f5f9; /* slate-100 */
+  border-radius: 9999px;
+}
+.scrollbar-light::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 9999px;
+}
+.scrollbar-light:hover::-webkit-scrollbar-thumb {
+  background: #94a3b8; /* slate-400 */
 }

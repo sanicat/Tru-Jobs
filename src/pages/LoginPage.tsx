@@ -2,6 +2,7 @@ import { ArrowLeft, Eye, EyeOff, Briefcase, Building } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SocialButton } from '@/components/ui/social-button';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import logoUrl from '@/assets/tru-jobs-logo.svg';
 import loginBg from '@/assets/login-bg.png';
 import bgGradient from '@/assets/bg-gradient.svg';
@@ -15,11 +16,39 @@ export default function LoginPage() {
     rememberMe: false
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const CREDS = {
+    jobseeker: {
+      email: 'jobseeker.demo@example.com',
+      password: 'JobSeeker@123',
+      redirect: '/jobseeker/dashboard',
+    },
+    employer: {
+      email: 'employer.demo@example.com',
+      password: 'Employer@123',
+      redirect: '/employer/dashboard',
+    },
+  } as const;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setError(null);
+
+    const { email, password } = formData;
+    const isJobSeeker = email === CREDS.jobseeker.email && password === CREDS.jobseeker.password;
+    const isEmployer = email === CREDS.employer.email && password === CREDS.employer.password;
+
+    if (isJobSeeker) {
+      navigate(CREDS.jobseeker.redirect);
+      return;
+    }
+    if (isEmployer) {
+      navigate(CREDS.employer.redirect);
+      return;
+    }
+
+    setError('Invalid email or password. Please use one of the demo accounts shown below.');
   };
 
   const isFormValid = formData.email && formData.password;
@@ -129,6 +158,12 @@ export default function LoginPage() {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            {error && (
+              <Alert variant="destructive">
+                <AlertTitle>Login failed</AlertTitle>
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
             {/* Email Input */}
             <div>
               <input
@@ -229,6 +264,37 @@ export default function LoginPage() {
               </SocialButton>
             </div>
           </form>
+
+          {/* Demo credentials info box */}
+          <div className="mt-6 flex justify-center">
+            <div className="w-full rounded-md border border-gray-200 bg-gray-50 p-4 text-sm text-gray-600 dark:border-gray-700 dark:bg-gray-900/40 dark:text-gray-300">
+              <div className="mb-2 font-semibold text-gray-800 dark:text-gray-100">Job Seeker (Demo)</div>
+              <div className="space-y-1">
+                <p>
+                  <span className="font-medium">Username:</span>{' '}
+                  <code className="font-mono">jobseeker.demo@example.com</code>
+                </p>
+                <p>
+                  <span className="font-medium">Password:</span>{' '}
+                  <code className="font-mono">JobSeeker@123</code>
+                </p>
+              </div>
+
+              <div className="my-3 h-px w-full bg-gray-200 dark:bg-gray-700" />
+
+              <div className="mb-2 font-semibold text-gray-800 dark:text-gray-100">Employer (Demo)</div>
+              <div className="space-y-1">
+                <p>
+                  <span className="font-medium">Username:</span>{' '}
+                  <code className="font-mono">employer.demo@example.com</code>
+                </p>
+                <p>
+                  <span className="font-medium">Password:</span>{' '}
+                  <code className="font-mono">Employer@123</code>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

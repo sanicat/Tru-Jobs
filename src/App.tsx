@@ -6,6 +6,8 @@ import EmployerForm from './pages/signup/EmployerForm';
 import SignUpRoleSelection from './pages/SignUpRoleSelection';
 import EnterOtp from './pages/auth/EnterOtp';
 import ResetPassword from './pages/auth/ResetPassword';
+import JobSeekerDashboard from '@/pages/JobSeekerDashboard';
+import EmployerDashboard from '@/pages/EmployerDashboard';
 
 function App() {
   return (
@@ -19,6 +21,9 @@ function App() {
         <Route path="/signup/employer" element={<EmployerForm />} />
         <Route path="/auth/enter-otp" element={<EnterOtp />} />
         <Route path="/auth/reset-password" element={<ResetPassword />} />
+        <Route path="/dashboard" element={<JobSeekerDashboard />} />
+        <Route path="/jobseeker/dashboard" element={<JobSeekerDashboard />} />
+        <Route path="/employer/dashboard" element={<EmployerDashboard />} />
       </Routes>
     </Router>
   );
