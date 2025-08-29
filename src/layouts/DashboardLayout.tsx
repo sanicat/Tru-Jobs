@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </aside>
 
         {/* Main content */}
-        <main className="pb-10 overflow-x-hidden">{children}</main>
+        <main className="pb-10 overflow-x-hidden overflow-y-hidden">{children}</main>
       </div>
     </div>
   )

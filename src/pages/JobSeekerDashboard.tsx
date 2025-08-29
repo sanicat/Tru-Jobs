@@ -2,8 +2,12 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import DashboardLayout from '@/layouts/DashboardLayout'
+import ApplicationSummary from '@/components/charts/ApplicationSummary'
+import ApplicationsTrends from '@/components/charts/ApplicationsTrends'
+import InvitationList, { type InvitationItem } from '@/components/invitations/InvitationList'
+import ProfileViews from '@/components/charts/ProfileViews'
 import { ArrowUpRight, ArrowDownRight, Users, MapPin, CheckCircle, Clock, XCircle } from 'lucide-react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import bgBanner1 from '@/assets/mid-baner_bg-1.svg'
 import bgBanner2 from '@/assets/mid-baner_bg-2.svg'
 import companyLogo1 from '@/assets/Company_Logo-1.png'
@@ -23,12 +27,33 @@ interface WidgetItem {
 export default function JobSeekerDashboard() {
   const recScrollRef = useRef<HTMLDivElement | null>(null)
 
+  // Attach non-passive wheel listener to allow preventDefault safely
+  useEffect(() => {
+    const el = recScrollRef.current
+    if (!el) return
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault()
+        el.scrollLeft += e.deltaY
+      }
+    }
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => el.removeEventListener('wheel', onWheel)
+  }, [])
+
   const widgets: WidgetItem[] = [
     { title: 'Applied Jobs', value: 300, change: 5, trend: 'up', iconBg: 'bg-orange-500', cardBg: 'bg-orange-50' },
     { title: 'Job Invites', value: 218, change: 3.2, trend: 'up', iconBg: 'bg-sky-500', cardBg: 'bg-sky-50' },
     { title: 'Interviews', value: 126, change: 2, trend: 'down', iconBg: 'bg-amber-500', cardBg: 'bg-amber-50' },
     { title: 'Profile Views', value: 776, change: 8, trend: 'up', iconBg: 'bg-green-600', cardBg: 'bg-green-50' },
     { title: 'Saved Jobs', value: 118, change: 3.2, trend: 'up', iconBg: 'bg-blue-500', cardBg: 'bg-blue-50' },
+  ]
+
+  // Sample invitations
+  const invitations: InvitationItem[] = [
+    { id: '1', title: 'UX Designer', company: 'Senfore', remote: true, logo: companyLogo1, timeAgo: '1d ago' },
+    { id: '2', title: 'Product Designer', company: 'Octane', remote: true, logo: companyLogo2, timeAgo: '3d ago' },
+    { id: '3', title: 'UX Researcher', company: 'Techify', remote: true, logo: companyLogo1, timeAgo: '5d ago' },
   ]
 
   const jobs = [
@@ -175,14 +200,6 @@ export default function JobSeekerDashboard() {
         {/* Horizontal scroll with peeking 4th card on lg+ */}
         <div
           ref={recScrollRef}
-          onWheel={(e) => {
-            // enable smooth horizontal scroll using mouse wheel
-            if (!recScrollRef.current) return
-            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-              e.preventDefault()
-              recScrollRef.current.scrollLeft += e.deltaY
-            }
-          }}
           className="scrollbar-light overflow-x-auto scroll-smooth pb-2"
         >
           <div className="flex gap-4 pr-6">
@@ -275,6 +292,26 @@ export default function JobSeekerDashboard() {
           </Table>
         </div>
       </Card>
+
+      {/* Analytics */}
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <ApplicationSummary />
+        </div>
+        <div className="lg:col-span-1">
+          <ApplicationsTrends />
+        </div>
+      </div>
+
+      {/* Invitations + Profile Views */}
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-1">
+          <InvitationList items={invitations} />
+        </div>
+        <div className="lg:col-span-2">
+          <ProfileViews />
+        </div>
+      </div>
     </DashboardLayout>
   )
 }
